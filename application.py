@@ -3,6 +3,7 @@ import re
 import requests
 import logging
 import json
+import pprint
 from flask import Flask, jsonify, render_template, request, url_for
 from flask_jsglue import JSGlue
 
@@ -29,7 +30,8 @@ def update():
 	url += "lat=-30.240722&lng=-70.738777&fDstL=0&fDstU=1600"
 	planes = requests.get(url)
 
-	print planes.json()
+
+	pprint.pprint(planes.json())
 
 	# print json.dumps(list(planes))
 
