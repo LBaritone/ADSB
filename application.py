@@ -27,28 +27,9 @@ def index():
 @app.route("/update")
 def update():
 	url = "http://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?"
-	url += "lat=-30.240722&lng=-70.738777&fDstL=0&fDstU=1600"
+	url += "lat=-30.240722&lng=-70.738777&fDstL=0&fDstU=2000"
 	planes = requests.get(url)
 
-
 	pprint.pprint(planes.json())
-
-	# print json.dumps(list(planes))
-
-	# return planes
-
-	# return jsonify(list(planes))
-
-	# def set_default(p):
-	#     if isinstance(p, set):
-	#         return list(p)
-	#     raise TypeError
-
-	# json.dumps(planes, default=set_default)
-
-	# print app.response_class(planes.text, content_type='application/json')
-
 	return jsonify(planes.json())
-
-	# return app.response_class(planes.content, content_type='application/json')
 

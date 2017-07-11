@@ -59,7 +59,7 @@ function addMarker(plane)
     var pos;
     var call;
 
-    alert("inside addMarker");
+    console.log(plane);
 
     // check if plane has a position
     if (!plane.hasOwnProperty("Lat") && !plane.hasOwnProperty("Long")) {
@@ -79,7 +79,12 @@ function addMarker(plane)
         position: pos,
         label: call,
         map: map,
+        icon: {
+            url: "../static/airplane.png"
+        }
     });
+
+    console.log(marker);
     
     // listen for a click on an icon and then display call number of plane
     marker.addListener('click', function() {
@@ -100,7 +105,7 @@ function addMarker(plane)
  */
 function configure()
 {
-    setInterval(update(), 30000);
+    setInterval(update(), 3000);
 }
 
 /**
@@ -154,18 +159,18 @@ function update()
     $.getJSON(Flask.url_for("update"))
     .done(function(data, textStatus, jqXHR) {
 
-       // remove old markers from map
-       removeMarkers();
-       console.log(data);
-       console.log(Object.keys(data).length);
+        // remove old markers from map
+        removeMarkers();
+        console.log(data.acList);
+        console.log(Object.keys(data.acList).length);
 
-       // add new markers to map
-       for (var i = 0; i < data.length; i++)
-       {
-           addMarker(data[i]);
-       }
+        // add new markers to map
+        for (var i = 0; i < data.acList.length; i++)
+        {
+           addMarker(data.acList[i]);
+        }
 
-       // remember to also convert past current markers to dots 
+        // remember to also convert past current markers to dots 
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
 
