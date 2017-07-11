@@ -62,14 +62,14 @@ function addMarker(plane)
     alert("inside addMarker");
 
     // check if plane has a position
-    if (!plane.hasOwnProperty("u'Lat") && !plane.hasOwnProperty("u'Long")) {
+    if (!plane.hasOwnProperty("Lat") && !plane.hasOwnProperty("Long")) {
         return;
     } 
     
-    pos = {lat: plane["u'Lat"], lng: plane["u'Long"]};  
+    pos = {lat: plane["Lat"], lng: plane["Long"]};  
 
-    if (plane.hasOwnProperty("u'Call")) {
-        call = plane["u'Call"];
+    if (plane.hasOwnProperty("Call")) {
+        call = plane["Call"];
     } else {
         call = "Unknown";
     }
@@ -157,7 +157,7 @@ function update()
        // remove old markers from map
        removeMarkers();
        console.log(data);
-       console.log(data.length);
+       console.log(Object.keys(data).length);
 
        // add new markers to map
        for (var i = 0; i < data.length; i++)
