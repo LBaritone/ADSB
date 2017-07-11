@@ -59,6 +59,8 @@ function addMarker(plane)
     var pos;
     var call;
 
+    alert("inside addMarker");
+
     // check if plane has a position
     if (!plane.hasOwnProperty("u'Lat") && !plane.hasOwnProperty("u'Long")) {
         return;
@@ -66,7 +68,7 @@ function addMarker(plane)
     
     pos = {lat: plane["u'Lat"], lng: plane["u'Long"]};  
 
-    if (!plane.hasOwnProperty("u'Call")) {
+    if (plane.hasOwnProperty("u'Call")) {
         call = plane["u'Call"];
     } else {
         call = "Unknown";
@@ -116,31 +118,6 @@ function removeMarkers()
 }
 
 /**
- * Searches database for typeahead's suggestions.
- */
-// function search(query, syncResults, asyncResults)
-// {
-//     // get places matching query (asynchronously)
-//     var parameters = {
-//         q: query
-//     };
-//     $.getJSON(Flask.url_for("search"), parameters)
-//     .done(function(data, textStatus, jqXHR) {
-     
-//         // call typeahead's callback with search results (i.e., places)
-//         asyncResults(data);
-//     })
-//     .fail(function(jqXHR, textStatus, errorThrown) {
-
-//         // log error to browser's console
-//         console.log(errorThrown.toString());
-
-//         // call typeahead's callback with no results
-//         asyncResults([]);
-//     });
-// }
-
-/**
  * Shows info window at marker with content.
  */
 function showInfo(marker, content)
@@ -174,13 +151,13 @@ function showInfo(marker, content)
  */
 function update() 
 {
-    alert("starting update");
     $.getJSON(Flask.url_for("update"))
     .done(function(data, textStatus, jqXHR) {
 
-        alert("inside update");
        // remove old markers from map
        removeMarkers();
+       console.log(data);
+       console.log(data.length);
 
        // add new markers to map
        for (var i = 0; i < data.length; i++)
