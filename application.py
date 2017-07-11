@@ -48,7 +48,7 @@ def update():
 
 	# print app.response_class(planes.text, content_type='application/json')
 
-	return planes.json()
+	return jsonify(planes.json())
 
 	# return app.response_class(planes.content, content_type='application/json')
 

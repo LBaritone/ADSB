@@ -60,14 +60,14 @@ function addMarker(plane)
     var call;
 
     // check if plane has a position
-    if (!plane.hasOwnProperty("Lat") && !plane.hasOwnProperty("Long")) {
+    if (!plane.hasOwnProperty("u'Lat") && !plane.hasOwnProperty("u'Long")) {
         return;
     } 
     
-    pos = {lat: plane["Lat"], lng: plane["Long"]};  
+    pos = {lat: plane["u'Lat"], lng: plane["u'Long"]};  
 
-    if (!plane.hasOwnProperty("Call")) {
-        call = plane["Call"];
+    if (!plane.hasOwnProperty("u'Call")) {
+        call = plane["u'Call"];
     } else {
         call = "Unknown";
     }
